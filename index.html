@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mail Mate</title>
-    <style>
-      body { margin: 0; font-family: sans-serif; text-align: center; padding: 50px 20px; background: #f0f4f8; }
-      h1 { color: #1e40af; }
-      button { background: #1e40af; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; }
-    </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>
-      // JavaScript مباشر بدون React للاختبار
-      document.getElementById('root').innerHTML = `
-        <h1>📧 Mail Mate</h1>
-        <p>✅ التطبيق يعمل بنجاح على هاتفك!</p>
-        <button onclick="alert('مرحباً! التطبيق يعمل ✅')">اضغط للاختبار</button>
-        <p style="margin-top: 30px; color: green;">تم تحميل الصفحة بنجاح</p>
-      `;
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mail Mate - بريدي</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #f5f7fb; }
+    .app { max-width: 600px; margin: 0 auto; background: white; min-height: 100vh; }
+    .header { background: #1e40af; color: white; padding: 16px; font-size: 20px; font-weight: bold; }
+    .email-item { padding: 16px; border-bottom: 1px solid #e5e7eb; cursor: pointer; transition: background 0.2s; }
+    .email-item:hover { background: #f3f4f6; }
+    .sender { font-weight: bold; margin-bottom: 4px; }
+    .subject { color: #374151; margin-bottom: 4px; }
+    .preview { color: #6b7280; font-size: 14px; }
+    .fab {
+      position: fixed; bottom: 24px; right: 24px;
+      background: #1e40af; color: white; width: 56px; height: 56px;
+      border-radius: 28px; display: flex; align-items: center; justify-content: center;
+      font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <div class="header">📧 صندوق الوارد</div>
+  <div id="emails-list"></div>
+  <div class="fab" onclick="alert('فتح بريد جديد')">+</div>
+</div>
+
+<script>
+  const emails = [
+    { sender: 'أحمد', subject: 'اجتماع اليوم', preview: 'مرحباً، يرجى حضور الاجتماع الساعة 3' },
+    { sender: 'سارة', subject: 'تقرير المشروع', preview: 'أرسلت لك التقرير النهائي للمشروع' },
+    { sender: 'محمد', subject: 'موعد التسليم', preview: 'نذكرك بأن موعد التسليم يوم الأحد' },
+    { sender: 'نور', subject: 'عرض تعاون', preview: 'يسعدنا دعوتك للتعاون معنا في مشروع جديد' }
+  ];
+
+  const listDiv = document.getElementById('emails-list');
+  function renderEmails() {
+    listDiv.innerHTML = emails.map(email => `
+      <div class="email-item" onclick="alert('${email.subject}\n\n${email.preview}')">
+        <div class="sender">${email.sender}</div>
+        <div class="subject">${email.subject}</div>
+        <div class="preview">${email.preview}</div>
+      </div>
+    `).join('');
+  }
+  renderEmails();
+</script>
+</body>
 </html>
