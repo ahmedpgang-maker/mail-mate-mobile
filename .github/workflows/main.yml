@@ -23,9 +23,6 @@ jobs:
       - name: Build
         run: bun run build
       
-      - name: Sync Capacitor
-        run: npx cap sync android
-      
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -37,6 +34,9 @@ jobs:
       
       - name: Add Android platform
         run: npx cap add android
+      
+      - name: Sync Capacitor
+        run: npx cap sync android
       
       - name: Build APK
         run: |
