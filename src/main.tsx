@@ -1,10 +1,2 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './styles.css'
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+console.log("React app starting...");
+document.getElementById('root')!.innerHTML = '<div style="text-align:center; margin-top:50px"><h1>React يعمل أيضاً</h1><p>تم تحميل React بنجاح</p></div>';
