@@ -2,326 +2,95 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>منظومة الخطابات</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منظومة الخطابات - تسجيل الدخول</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Cairo', 'Segoe UI', system-ui, sans-serif;
+      font-family: 'Cairo', system-ui, sans-serif;
       background: #f0f2f5;
       padding: 16px;
     }
-
-    /* الحاوية الرئيسية */
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    /* البطاقات العلوية (الإحصائيات) */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .stat-card {
-      background: white;
-      border-radius: 20px;
-      padding: 16px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .stat-number {
-      font-size: 28px;
-      font-weight: bold;
-      color: #1e40af;
-    }
-
-    .stat-label {
-      font-size: 13px;
-      color: #6b7280;
-      margin-top: 4px;
-    }
-
-    /* بطاقة أكبر (إجمالي المشاهدات) */
-    .wide-card {
-      background: linear-gradient(135deg, #1e40af, #3b82f6);
-      color: white;
-      border-radius: 20px;
-      padding: 16px;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .wide-number {
-      font-size: 32px;
-      font-weight: bold;
-    }
-
-    /* قسم الخطابات */
-    .section-title {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .letter-card {
-      background: white;
-      border-radius: 16px;
-      padding: 14px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .letter-card:hover {
-      background: #f8fafc;
-    }
-
-    .letter-info {
-      flex: 1;
-    }
-
-    .letter-title {
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .letter-meta {
-      font-size: 12px;
-      color: #6b7280;
-    }
-
-    .letter-status {
-      background: #e0e7ff;
-      color: #1e40af;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    /* زر الإضافة */
-    .fab {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #1e40af;
-      color: white;
-      width: 56px;
-      height: 56px;
-      border-radius: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      cursor: pointer;
-      border: none;
-      z-index: 100;
-    }
-
-    /* النافذة المنبثقة */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 200;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .modal-content {
+    .container { max-width: 500px; margin: 0 auto; }
+    .card {
       background: white;
       border-radius: 24px;
       padding: 24px;
-      width: 100%;
-      max-width: 400px;
+      margin-top: 50px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-
-    .modal-content input, .modal-content textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      font-family: inherit;
-    }
-
-    .modal-buttons {
-      display: flex;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .modal-buttons button {
-      flex: 1;
-      padding: 12px;
-      border-radius: 12px;
-      border: none;
-      font-weight: bold;
-    }
-
-    .save-btn {
-      background: #1e40af;
-      color: white;
-    }
-
-    .cancel-btn {
-      background: #f3f4f6;
-      color: #374151;
-    }
+    .header { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border-radius: 24px; padding: 20px; margin-bottom: 20px; text-align: center; }
+    input, select { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 12px; font-size: 16px; }
+    .btn { background: #1e40af; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; font-size: 16px; }
+    .btn-danger { background: #dc2626; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+    .tab { flex: 1; text-align: center; padding: 12px; border-radius: 12px; cursor: pointer; background: #f3f4f6; }
+    .tab.active { background: #1e40af; color: white; }
+    .list-item { background: white; border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid #e5e7eb; }
+    .badge { background: #e0e7ff; color: #1e40af; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
+    .hidden { display: none; }
+    .fab { position: fixed; bottom: 24px; right: 24px; background: #1e40af; color: white; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; }
   </style>
 </head>
 <body>
-<div class="container">
-  <!-- إحصائيات -->
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-number" id="totalLetters">5</div>
-      <div class="stat-label">إجمالي الخطابات</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number" id="totalEmployees">3</div>
-      <div class="stat-label">عدد الموظفين</div>
+<div class="container" id="app">
+  <!-- شاشة تسجيل الدخول -->
+  <div id="loginScreen">
+    <div class="header"><h1>📋 منظومة الخطابات</h1><p>العبادة المجمعة الذهبية الزاوية</p></div>
+    <div class="card">
+      <h3>تسجيل الدخول</h3>
+      <input type="text" id="loginName" placeholder="الاسم">
+      <select id="loginRole">
+        <option value="admin">مدير</option>
+        <option value="employee">موظف</option>
+      </select>
+      <button class="btn" onclick="login()">دخول</button>
     </div>
   </div>
 
-  <div class="wide-card">
-    <div class="wide-number" id="totalViews">4</div>
-    <div>إجمالي المشاهدات</div>
+  <!-- لوحة المدير -->
+  <div id="adminPanel" class="hidden">
+    <div class="header"><h1>👑 لوحة المدير</h1><button class="btn btn-danger" style="width:auto; padding:8px 16px; margin-top:10px;" onclick="logout()">تسجيل خروج</button></div>
+    <div class="tabs"><div class="tab active" onclick="adminTab('dashboard')">الرئيسية</div><div class="tab" onclick="adminTab('employees')">الموظفين</div><div class="tab" onclick="adminTab('letters')">الخطابات</div></div>
+    <div id="adminDashboard"><div class="card"><h3>📊 إحصائيات</h3><p id="stats"></p></div><div class="card" style="margin-top:12px;"><h3>📬 آخر الخطابات</h3><div id="recentLettersAdmin"></div></div></div>
+    <div id="adminEmployees" class="hidden"><div class="card"><h3>👥 الموظفين</h3><button class="btn" style="margin-bottom:12px;" onclick="openAddEmployee()">+ إضافة موظف</button><div id="employeesList"></div></div></div>
+    <div id="adminLetters" class="hidden"><div class="card"><h3>✏️ إنشاء خطاب جديد</h3><input type="text" id="newLetterTitle" placeholder="عنوان الخطاب"><textarea id="newLetterContent" rows="3" placeholder="محتوى الخطاب"></textarea><select id="letterRecipient"><option value="all">إرسال لجميع الموظفين</option></select><button class="btn" onclick="sendLetter()">إرسال</button></div><div class="card" style="margin-top:12px;"><h3>📜 جميع الخطابات</h3><div id="allLettersList"></div></div></div>
+    <button class="fab" onclick="openAddEmployee()">+</button>
   </div>
 
-  <!-- قائمة الخطابات -->
-  <div class="section-title">
-    <span>📋 آخر الخطابات</span>
-    <span style="font-size:12px;">عرض الكل</span>
-  </div>
-  <div id="lettersList"></div>
-</div>
-
-<button class="fab" onclick="openModal()">+</button>
-
-<!-- نافذة إضافة خطاب جديد -->
-<div id="modal" class="modal">
-  <div class="modal-content">
-    <h3>✏️ خطاب جديد</h3>
-    <input type="text" id="letterTitle" placeholder="عنوان الخطاب">
-    <textarea id="letterDesc" rows="3" placeholder="محتوى الخطاب"></textarea>
-    <div class="modal-buttons">
-      <button class="save-btn" onclick="addLetter()">حفظ</button>
-      <button class="cancel-btn" onclick="closeModal()">إلغاء</button>
-    </div>
+  <!-- لوحة الموظف -->
+  <div id="employeePanel" class="hidden">
+    <div class="header"><h1>📧 مرحباً، <span id="empName"></span></h1><button class="btn btn-danger" style="width:auto; padding:8px 16px; margin-top:10px;" onclick="logout()">تسجيل خروج</button></div>
+    <div class="card"><h3>📬 خطاباتي</h3><div id="myLetters"></div></div>
   </div>
 </div>
 
 <script>
-  // البيانات (مشابهة لنظامك)
-  let letters = [
-    { title: "استدعاء", desc: "إستدعاء الموظف أحمد للمكتب", views: 1, date: "2026-07-14" },
-    { title: "تعالى", desc: "طلب حضور اجتماع عاجل", views: 1, date: "2026-07-14" },
-    { title: "تجربة", desc: "اختبار نظام الخطابات", views: 1, date: "2026-07-10" }
-  ];
+  let employees = [{ id: 1, name: "أحمد", password: "123", role: "employee" }, { id: 2, name: "سارة", password: "123", role: "employee" }];
+  let letters = [];
+  let currentUser = null;
 
-  let employees = 3;
-  let totalViews = 4;
-
-  // تحديث الواجهة
-  function render() {
-    document.getElementById('totalLetters').innerText = letters.length;
-    document.getElementById('totalEmployees').innerText = employees;
-    document.getElementById('totalViews').innerText = totalViews;
-
-    const listDiv = document.getElementById('lettersList');
-    listDiv.innerHTML = letters.map((letter, index) => `
-      <div class="letter-card" onclick="viewLetter(${index})">
-        <div class="letter-info">
-          <div class="letter-title">${letter.title}</div>
-          <div class="letter-meta">📅 ${letter.date} | 👁️ ${letter.views} مشاهدة</div>
-        </div>
-        <div class="letter-status">${letter.views > 0 ? 'مقروء' : 'جديد'}</div>
-      </div>
-    `).join('');
+  function save() { localStorage.setItem('employees', JSON.stringify(employees)); localStorage.setItem('letters', JSON.stringify(letters)); }
+  function load() {
+    if(localStorage.getItem('employees')) employees = JSON.parse(localStorage.getItem('employees'));
+    if(localStorage.getItem('letters')) letters = JSON.parse(localStorage.getItem('letters'));
+    if(employees.length===0) employees = [{ id: 1, name: "أحمد", password: "123", role: "employee" }, { id: 2, name: "سارة", password: "123", role: "employee" }, { id: 3, name: "محمد", password: "123", role: "employee" }];
+    if(letters.length===0) letters = [{ id: 1, title: "اجتماع", content: "اجتماع الساعة 3", to: "all", views: [], date: "2026-06-14" }];
+    updateSelects();
   }
-
-  // فتح النافذة
-  function openModal() {
-    document.getElementById('modal').style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('modal').style.display = 'none';
-    document.getElementById('letterTitle').value = '';
-    document.getElementById('letterDesc').value = '';
-  }
-
-  // إضافة خطاب جديد
-  function addLetter() {
-    const title = document.getElementById('letterTitle').value;
-    const desc = document.getElementById('letterDesc').value;
-    if (!title) {
-      alert('الرجاء إدخال عنوان الخطاب');
-      return;
-    }
-    const today = new Date().toISOString().slice(0,10);
-    letters.unshift({
-      title: title,
-      desc: desc,
-      views: 0,
-      date: today
-    });
-    render();
-    closeModal();
-    saveToLocal();
-  }
-
-  // عرض التفاصيل
-  function viewLetter(index) {
-    letters[index].views++;
-    totalViews++;
-    alert(`📄 ${letters[index].title}\n\n${letters[index].desc}\n\n📅 ${letters[index].date}`);
-    render();
-    saveToLocal();
-  }
-
-  // حفظ البيانات في الهاتف
-  function saveToLocal() {
-    localStorage.setItem('letters', JSON.stringify(letters));
-    localStorage.setItem('employees', employees);
-    localStorage.setItem('totalViews', totalViews);
-  }
-
-  function loadFromLocal() {
-    const savedLetters = localStorage.getItem('letters');
-    if (savedLetters) letters = JSON.parse(savedLetters);
-    const savedEmployees = localStorage.getItem('employees');
-    if (savedEmployees) employees = parseInt(savedEmployees);
-    const savedViews = localStorage.getItem('totalViews');
-    if (savedViews) totalViews = parseInt(savedViews);
-    render();
-  }
-
-  loadFromLocal();
+  function updateSelects() { let sel = document.getElementById('letterRecipient'); if(sel) sel.innerHTML = '<option value="all">إرسال لجميع الموظفين</option>' + employees.map(e=>`<option value="${e.id}">${e.name}</option>`).join(''); }
+  function login() { let name = document.getElementById('loginName').value; let role = document.getElementById('loginRole').value; let emp = employees.find(e=>e.name === name); if(role === 'admin' && name === 'admin') { currentUser = { id: 0, name: 'admin', role: 'admin' }; showAdminPanel(); } else if(emp && role === 'employee') { currentUser = emp; showEmployeePanel(); } else alert('الاسم غير موجود'); }
+  function logout() { currentUser = null; document.getElementById('loginScreen').classList.remove('hidden'); document.getElementById('adminPanel').classList.add('hidden'); document.getElementById('employeePanel').classList.add('hidden'); }
+  function showAdminPanel() { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('adminPanel').classList.remove('hidden'); document.getElementById('employeePanel').classList.add('hidden'); renderAdmin(); }
+  function showEmployeePanel() { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('adminPanel').classList.add('hidden'); document.getElementById('employeePanel').classList.remove('hidden'); document.getElementById('empName').innerText = currentUser.name; renderEmployeeLetters(); }
+  function renderAdmin() { document.getElementById('stats').innerHTML = `👥 الموظفين: ${employees.length}<br>📄 الخطابات: ${letters.length}`; let recent = [...letters].reverse().slice(0,3); document.getElementById('recentLettersAdmin').innerHTML = recent.map(l=>`<div class="list-item">${l.title}<div class="badge">${l.to === 'all' ? 'للجميع' : 'لموظف'}</div></div>`).join('') || '<div>لا توجد خطابات</div>'; document.getElementById('employeesList').innerHTML = employees.map(e=>`<div class="list-item"><span>${e.name}</span><button class="badge" style="background:#dc2626; color:white;" onclick="deleteEmployee(${e.id})">حذف</button></div>`).join(''); document.getElementById('allLettersList').innerHTML = letters.map(l=>`<div class="list-item"><span><b>${l.title}</b><br><small>${l.date}</small></span><div class="badge">👁️ ${l.views?.length || 0}</div></div>`).join('') || '<div>لا توجد خطابات</div>'; updateSelects(); }
+  function renderEmployeeLetters() { let myLetters = letters.filter(l => l.to === 'all' || l.to === currentUser.id); document.getElementById('myLetters').innerHTML = myLetters.map(l=>`<div class="list-item" onclick="viewLetter(${l.id})"><div><b>${l.title}</b><br><small>${l.date}</small></div><div class="badge">${l.views?.includes(currentUser.id) ? 'مقروء' : 'جديد'}</div></div>`).join('') || '<div>لا توجد خطابات</div>'; }
+  function viewLetter(id) { let l = letters.find(l=>l.id===id); if(l && !l.views?.includes(currentUser.id)) { if(!l.views) l.views = []; l.views.push(currentUser.id); save(); renderEmployeeLetters(); } alert(l.content); }
+  function sendLetter() { let title = document.getElementById('newLetterTitle').value; let content = document.getElementById('newLetterContent').value; let to = document.getElementById('letterRecipient').value; if(!title) return alert('أدخل العنوان'); letters.unshift({ id: Date.now(), title, content, to, views: [], date: new Date().toISOString().slice(0,10) }); save(); renderAdmin(); document.getElementById('newLetterTitle').value = ''; document.getElementById('newLetterContent').value = ''; alert('تم إرسال الخطاب'); }
+  function deleteEmployee(id) { if(confirm('حذف الموظف؟')) { employees = employees.filter(e=>e.id !== id); save(); renderAdmin(); } }
+  function openAddEmployee() { let name = prompt('اسم الموظف الجديد'); if(name) { employees.push({ id: Date.now(), name, password: "123", role: "employee" }); save(); renderAdmin(); } }
+  function adminTab(tab) { document.getElementById('adminDashboard').classList.add('hidden'); document.getElementById('adminEmployees').classList.add('hidden'); document.getElementById('adminLetters').classList.add('hidden'); document.getElementById('admin'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.remove('hidden'); }
+  load();
 </script>
 </body>
 </html>
