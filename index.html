@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mail Mate</title>
+    <style>
+      body { margin: 0; font-family: sans-serif; text-align: center; padding: 50px 20px; background: #f0f4f8; }
+      h1 { color: #1e40af; }
+      button { background: #1e40af; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-size: 16px; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // JavaScript مباشر بدون React للاختبار
+      document.getElementById('root').innerHTML = `
+        <h1>📧 Mail Mate</h1>
+        <p>✅ التطبيق يعمل بنجاح على هاتفك!</p>
+        <button onclick="alert('مرحباً! التطبيق يعمل ✅')">اضغط للاختبار</button>
+        <p style="margin-top: 30px; color: green;">تم تحميل الصفحة بنجاح</p>
+      `;
+    </script>
   </body>
 </html>
