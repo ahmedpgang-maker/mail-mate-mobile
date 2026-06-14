@@ -2,95 +2,191 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>منظومة الخطابات - تسجيل الدخول</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>العبادة المجمعة الذهبية الزاوية - منظومة الخطابات</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: 'Cairo', system-ui, sans-serif;
-      background: #f0f2f5;
-      padding: 16px;
+      font-family: 'Cairo', 'Tajawal', 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #0a1a3a 0%, #0d2b4f 100%);
+      min-height: 100vh;
+      padding: 20px;
     }
     .container { max-width: 500px; margin: 0 auto; }
-    .card {
-      background: white;
-      border-radius: 24px;
-      padding: 24px;
-      margin-top: 50px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .header { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border-radius: 24px; padding: 20px; margin-bottom: 20px; text-align: center; }
-    input, select { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ddd; border-radius: 12px; font-size: 16px; }
-    .btn { background: #1e40af; color: white; border: none; padding: 14px; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; font-size: 16px; }
-    .btn-danger { background: #dc2626; }
-    .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
-    .tab { flex: 1; text-align: center; padding: 12px; border-radius: 12px; cursor: pointer; background: #f3f4f6; }
-    .tab.active { background: #1e40af; color: white; }
-    .list-item { background: white; border-radius: 16px; padding: 14px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid #e5e7eb; }
-    .badge { background: #e0e7ff; color: #1e40af; padding: 4px 10px; border-radius: 20px; font-size: 12px; }
+    .gold-bar { background: linear-gradient(135deg, #c9a03d, #f4d03f); border-radius: 20px; padding: 4px 16px; margin-bottom: 20px; display: inline-block; font-size: 12px; font-weight: bold; color: #1e3a5f; }
+    .login-card { background: white; border-radius: 32px; padding: 32px 24px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+    .logo-icon { font-size: 48px; margin-bottom: 8px; }
+    .logo-title { background: linear-gradient(135deg, #c9a03d, #f4d03f); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 22px; font-weight: bold; }
+    .logo-sub { font-size: 12px; color: #6b7280; margin-bottom: 24px; }
+    .social-buttons { display: flex; gap: 16px; margin-bottom: 24px; }
+    .social-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: white; border: 1px solid #e5e7eb; border-radius: 16px; font-weight: bold; cursor: pointer; }
+    .divider { text-align: center; margin: 20px 0; color: #9ca3af; position: relative; }
+    .divider::before, .divider::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: #e5e7eb; }
+    .divider::before { left: 0; }
+    .divider::after { right: 0; }
+    input, select, textarea { width: 100%; padding: 14px 16px; margin: 8px 0; border: 1px solid #e5e7eb; border-radius: 16px; font-size: 15px; font-family: inherit; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #c9a03d; }
+    .btn { width: 100%; padding: 14px; background: #1e3a5f; color: white; border: none; border-radius: 16px; font-weight: bold; font-size: 16px; cursor: pointer; margin: 8px 0; }
+    .btn-gold { background: linear-gradient(135deg, #c9a03d, #f4d03f); color: #1e3a5f; }
+    .btn-outline { background: transparent; border: 1px solid #1e3a5f; color: #1e3a5f; }
+    .btn-small { width: auto; padding: 8px 16px; font-size: 13px; display: inline-block; margin: 4px; }
+    .link { color: #c9a03d; text-decoration: none; font-size: 13px; cursor: pointer; }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
     .hidden { display: none; }
-    .fab { position: fixed; bottom: 24px; right: 24px; background: #1e40af; color: white; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; }
+    .admin-card { background: white; border-radius: 28px; padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .admin-header { background: linear-gradient(135deg, #0f2b5e, #1e3a5f); border-radius: 28px; padding: 24px; color: white; margin-bottom: 20px; position: relative; overflow: hidden; }
+    .admin-header h1 { font-size: 20px; margin-bottom: 8px; }
+    .admin-header p { font-size: 12px; opacity: 0.8; }
+    .tabs { display: flex; gap: 8px; background: #f0f2f5; border-radius: 20px; padding: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+    .tab { flex: 1; text-align: center; padding: 12px; border-radius: 16px; cursor: pointer; font-weight: bold; min-width: 80px; }
+    .tab.active { background: linear-gradient(135deg, #1e3a5f, #0f2b5e); color: white; }
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
+    .stat-card { background: linear-gradient(135deg, #f8f9fa, white); border-radius: 20px; padding: 20px; text-align: center; border: 1px solid rgba(201, 160, 61, 0.2); }
+    .stat-number { font-size: 32px; font-weight: bold; background: linear-gradient(135deg, #c9a03d, #f4d03f); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .stat-label { font-size: 13px; color: #6b7280; margin-top: 4px; }
+    .wide-card { background: linear-gradient(135deg, #1e3a5f, #0f2b5e); border-radius: 20px; padding: 20px; color: white; text-align: center; margin-bottom: 16px; }
+    .wide-number { font-size: 36px; font-weight: bold; color: #f4d03f; }
+    .section-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-weight: bold; color: #1e3a5f; flex-wrap: wrap; gap: 8px; }
+    .letter-card { background: white; border-radius: 20px; padding: 16px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid #f0f2f5; flex-wrap: wrap; gap: 8px; }
+    .letter-title { font-weight: bold; margin-bottom: 4px; color: #1e3a5f; }
+    .letter-meta { font-size: 11px; color: #9ca3af; }
+    .badge { background: rgba(201, 160, 61, 0.15); color: #c9a03d; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+    .badge-red { background: rgba(220,38,38,0.15); color: #dc2626; }
+    .badge-green { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .fab { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: linear-gradient(135deg, #c9a03d, #f4d03f); color: #1e3a5f; border-radius: 28px; display: flex; align-items: center; justify-content: center; font-size: 28px; cursor: pointer; box-shadow: 0 8px 20px rgba(201,160,61,0.4); border: none; }
+    .modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+    .modal-content { background: white; border-radius: 32px; padding: 24px; width: 100%; max-width: 450px; max-height: 85vh; overflow-y: auto; }
+    .file-options { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+    .file-btn { background: #f0f2f5; padding: 10px 12px; border-radius: 12px; cursor: pointer; text-align: center; flex: 1; min-width: 70px; }
+    .report-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .report-table th, .report-table td { border: 1px solid #e5e7eb; padding: 10px; text-align: center; font-size: 13px; }
+    .report-table th { background: #1e3a5f; color: white; }
+    hr { margin: 16px 0; border: none; border-top: 1px solid #e5e7eb; }
   </style>
 </head>
 <body>
 <div class="container" id="app">
-  <!-- شاشة تسجيل الدخول -->
-  <div id="loginScreen">
-    <div class="header"><h1>📋 منظومة الخطابات</h1><p>العبادة المجمعة الذهبية الزاوية</p></div>
-    <div class="card">
-      <h3>تسجيل الدخول</h3>
-      <input type="text" id="loginName" placeholder="الاسم">
-      <select id="loginRole">
-        <option value="admin">مدير</option>
-        <option value="employee">موظف</option>
-      </select>
-      <button class="btn" onclick="login()">دخول</button>
+  <div id="authScreen">
+    <div class="login-card">
+      <div class="logo-icon">🏛️</div>
+      <div class="logo-title">العبادة المجمعة الذهبية الزاوية</div>
+      <div class="logo-sub">منظومة الخطابات الرسمية<br>سجل الدخول أو أنشئ حساباً جديداً</div>
+      <div class="social-buttons"><button class="social-btn" onclick="alert('Apple Login')">🍎 Apple</button><button class="social-btn" onclick="alert('Google Login')">🔵 Google</button></div>
+      <div class="divider">أو بالبريد الإلكتروني</div>
+      <div id="loginForm">
+        <input type="email" id="loginEmail" placeholder="البريد الإلكتروني">
+        <input type="password" id="loginPassword" placeholder="كلمة المرور">
+        <div class="flex-between"><span class="link" onclick="alert('نسيت كلمة المرور')">نسيت كلمة المرور؟</span><span class="link" onclick="showSignup()">إنشاء حساب جديد</span></div>
+        <button class="btn" onclick="handleLogin()">دخول</button>
+      </div>
+      <div id="signupForm" class="hidden">
+        <input type="text" id="signupName" placeholder="الاسم الكامل"><input type="text" id="signupJob" placeholder="الوظيفة">
+        <input type="text" id="signupDept" placeholder="القسم"><input type="tel" id="signupPhone" placeholder="رقم الهاتف">
+        <input type="text" id="signupSpecialty" placeholder="التخصص"><input type="email" id="signupEmail" placeholder="البريد الإلكتروني">
+        <input type="password" id="signupPassword" placeholder="كلمة المرور">
+        <div class="flex-between"><span class="link" onclick="showLogin()">لديك حساب؟ تسجيل الدخول</span></div>
+        <button class="btn btn-gold" onclick="handleSignup()">إنشاء الحساب</button>
+      </div>
     </div>
   </div>
 
-  <!-- لوحة المدير -->
   <div id="adminPanel" class="hidden">
-    <div class="header"><h1>👑 لوحة المدير</h1><button class="btn btn-danger" style="width:auto; padding:8px 16px; margin-top:10px;" onclick="logout()">تسجيل خروج</button></div>
-    <div class="tabs"><div class="tab active" onclick="adminTab('dashboard')">الرئيسية</div><div class="tab" onclick="adminTab('employees')">الموظفين</div><div class="tab" onclick="adminTab('letters')">الخطابات</div></div>
-    <div id="adminDashboard"><div class="card"><h3>📊 إحصائيات</h3><p id="stats"></p></div><div class="card" style="margin-top:12px;"><h3>📬 آخر الخطابات</h3><div id="recentLettersAdmin"></div></div></div>
-    <div id="adminEmployees" class="hidden"><div class="card"><h3>👥 الموظفين</h3><button class="btn" style="margin-bottom:12px;" onclick="openAddEmployee()">+ إضافة موظف</button><div id="employeesList"></div></div></div>
-    <div id="adminLetters" class="hidden"><div class="card"><h3>✏️ إنشاء خطاب جديد</h3><input type="text" id="newLetterTitle" placeholder="عنوان الخطاب"><textarea id="newLetterContent" rows="3" placeholder="محتوى الخطاب"></textarea><select id="letterRecipient"><option value="all">إرسال لجميع الموظفين</option></select><button class="btn" onclick="sendLetter()">إرسال</button></div><div class="card" style="margin-top:12px;"><h3>📜 جميع الخطابات</h3><div id="allLettersList"></div></div></div>
-    <button class="fab" onclick="openAddEmployee()">+</button>
-  </div>
+    <div class="admin-header">
+      <h1>👑 لوحة المدير — منظومة الخطابات</h1>
+      <p>العبادة المجمعة الذهبية الزاوية — إنشاء وإرسال الخطابات الرسمية للموظفين</p>
+      <button style="background:#dc2626; border:none; padding:8px 16px; border-radius:12px; color:white; margin-top:12px;" onclick="logout()">تسجيل خروج</button>
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('dashboard')">الرئيسية</div>
+      <div class="tab" onclick="switchTab('employees')">الموظفين</div>
+      <div class="tab" onclick="switchTab('reports')">التقارير</div>
+      <div class="tab" onclick="switchTab('system')">المنظومة</div>
+    </div>
 
-  <!-- لوحة الموظف -->
-  <div id="employeePanel" class="hidden">
-    <div class="header"><h1>📧 مرحباً، <span id="empName"></span></h1><button class="btn btn-danger" style="width:auto; padding:8px 16px; margin-top:10px;" onclick="logout()">تسجيل خروج</button></div>
-    <div class="card"><h3>📬 خطاباتي</h3><div id="myLetters"></div></div>
+    <div id="dashboardTab">
+      <div class="stats-grid"><div class="stat-card"><div class="stat-number" id="totalLetters">0</div><div class="stat-label">إجمالي الخطابات</div></div><div class="stat-card"><div class="stat-number" id="totalEmployees">0</div><div class="stat-label">عدد الموظفين</div></div></div>
+      <div class="wide-card"><div class="wide-number" id="totalViews">0</div><div>إجمالي المشاهدات</div></div>
+      <div class="section-title"><span>📋 آخر الخطابات</span><span style="color:#c9a03d;">عرض الكل</span></div>
+      <div id="recentLetters"></div>
+    </div>
+
+    <div id="employeesTab" class="hidden">
+      <div class="section-title"><span>👥 إدارة الموظفين</span><button class="btn" style="width:auto; padding:8px 16px; background:#c9a03d; color:#1e3a5f;" onclick="addEmployee()">+ إضافة موظف</button></div>
+      <div id="employeesList"></div>
+    </div>
+
+    <!-- تبويب التقارير الجديد -->
+    <div id="reportsTab" class="hidden">
+      <div class="admin-card">
+        <div class="section-title"><span>📊 تقارير مشاهدة الخطابات</span></div>
+        <select id="reportLetterSelect" onchange="updateReport()"></select>
+        <div id="reportContent"></div>
+        <hr>
+        <div class="section-title"><span>🖨️ طباعة التقارير والخطابات</span></div>
+        <div class="flex-between"><button class="btn btn-small btn-gold" onclick="printReport()">🖨️ طباعة التقرير</button><button class="btn btn-small btn-gold" onclick="printAllLetters()">📄 طباعة كل الخطابات</button></div>
+      </div>
+      <div class="admin-card">
+        <div class="section-title"><span>📎 إرسال الخطابات بامتدادات مختلفة</span></div>
+        <select id="exportLetterSelect"></select>
+        <div class="file-options">
+          <div class="file-btn" onclick="exportLetterAs('pdf')">📄 PDF</div>
+          <div class="file-btn" onclick="exportLetterAs('image')">🖼️ صورة</div>
+          <div class="file-btn" onclick="exportLetterAs('excel')">📊 Excel</div>
+          <div class="file-btn" onclick="exportLetterAs('word')">📝 Word</div>
+          <div class="file-btn" onclick="exportLetterAs('text')">📃 نص</div>
+        </div>
+        <div id="exportStatus" style="margin-top:12px; font-size:13px; color:#22c55e;"></div>
+      </div>
+    </div>
+
+    <div id="systemTab" class="hidden">
+      <div class="admin-card"><div class="stat-label">اسم المنظومة</div><input type="text" id="systemName" value="العبادة المجمعة الذهبية الزاوية"></div>
+      <button class="btn" onclick="saveSettings()">حفظ الإعدادات</button>
+      <button class="btn btn-outline" onclick="resetData()">إعادة تعيين البيانات</button>
+    </div>
   </div>
 </div>
 
-<script>
-  let employees = [{ id: 1, name: "أحمد", password: "123", role: "employee" }, { id: 2, name: "سارة", password: "123", role: "employee" }];
-  let letters = [];
-  let currentUser = null;
+<button class="fab" id="fabBtn" style="display:none;" onclick="openNewLetter()">+</button>
 
-  function save() { localStorage.setItem('employees', JSON.stringify(employees)); localStorage.setItem('letters', JSON.stringify(letters)); }
-  function load() {
-    if(localStorage.getItem('employees')) employees = JSON.parse(localStorage.getItem('employees'));
-    if(localStorage.getItem('letters')) letters = JSON.parse(localStorage.getItem('letters'));
-    if(employees.length===0) employees = [{ id: 1, name: "أحمد", password: "123", role: "employee" }, { id: 2, name: "سارة", password: "123", role: "employee" }, { id: 3, name: "محمد", password: "123", role: "employee" }];
-    if(letters.length===0) letters = [{ id: 1, title: "اجتماع", content: "اجتماع الساعة 3", to: "all", views: [], date: "2026-06-14" }];
-    updateSelects();
+<div id="letterModal" class="modal"><div class="modal-content"><h3>✏️ خطاب جديد</h3><input type="text" id="letterTitle" placeholder="عنوان الخطاب"><textarea id="letterContent" rows="4" placeholder="محتوى الخطاب"></textarea><select id="letterTo"></select><div style="display:flex; gap:12px;"><button class="btn btn-gold" style="width:48%;" onclick="sendNewLetter()">إرسال</button><button class="btn btn-outline" style="width:48%;" onclick="closeLetterModal()">إلغاء</button></div></div></div>
+
+<script>
+  let employees = [], letters = [], totalViews = 0, currentUser = null;
+
+  function saveData() { localStorage.setItem('employees_mm', JSON.stringify(employees)); localStorage.setItem('letters_mm', JSON.stringify(letters)); localStorage.setItem('totalViews_mm', totalViews); }
+  function loadData() {
+    if(localStorage.getItem('employees_mm')) employees = JSON.parse(localStorage.getItem('employees_mm'));
+    if(localStorage.getItem('letters_mm')) letters = JSON.parse(localStorage.getItem('letters_mm'));
+    if(localStorage.getItem('totalViews_mm')) totalViews = parseInt(localStorage.getItem('totalViews_mm'));
+    if(employees.length===0) employees = [{id:1,name:"أحمد محمد",job:"مدير",email:"ahmed@example.com",password:"123"},{id:2,name:"سارة خالد",job:"موظفة",email:"sara@example.com",password:"123"},{id:3,name:"محمد علي",job:"موظف",email:"mohammed@example.com",password:"123"}];
+    if(letters.length===0) letters = [{id:1,title:"استدعاء",content:"إستدعاء للمكتب",to:"all",views:[1],date:"2026-06-14"},{id:2,title:"تعالى",content:"طلب حضور",to:"all",views:[],date:"2026-06-14"},{id:3,title:"تجربة",content:"اختبار النظام",to:"all",views:[],date:"2026-06-10"}];
+    totalViews = letters.reduce((s,l)=>s+l.views.length,0);
+    updateSelects(); updateReportSelect();
   }
-  function updateSelects() { let sel = document.getElementById('letterRecipient'); if(sel) sel.innerHTML = '<option value="all">إرسال لجميع الموظفين</option>' + employees.map(e=>`<option value="${e.id}">${e.name}</option>`).join(''); }
-  function login() { let name = document.getElementById('loginName').value; let role = document.getElementById('loginRole').value; let emp = employees.find(e=>e.name === name); if(role === 'admin' && name === 'admin') { currentUser = { id: 0, name: 'admin', role: 'admin' }; showAdminPanel(); } else if(emp && role === 'employee') { currentUser = emp; showEmployeePanel(); } else alert('الاسم غير موجود'); }
-  function logout() { currentUser = null; document.getElementById('loginScreen').classList.remove('hidden'); document.getElementById('adminPanel').classList.add('hidden'); document.getElementById('employeePanel').classList.add('hidden'); }
-  function showAdminPanel() { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('adminPanel').classList.remove('hidden'); document.getElementById('employeePanel').classList.add('hidden'); renderAdmin(); }
-  function showEmployeePanel() { document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('adminPanel').classList.add('hidden'); document.getElementById('employeePanel').classList.remove('hidden'); document.getElementById('empName').innerText = currentUser.name; renderEmployeeLetters(); }
-  function renderAdmin() { document.getElementById('stats').innerHTML = `👥 الموظفين: ${employees.length}<br>📄 الخطابات: ${letters.length}`; let recent = [...letters].reverse().slice(0,3); document.getElementById('recentLettersAdmin').innerHTML = recent.map(l=>`<div class="list-item">${l.title}<div class="badge">${l.to === 'all' ? 'للجميع' : 'لموظف'}</div></div>`).join('') || '<div>لا توجد خطابات</div>'; document.getElementById('employeesList').innerHTML = employees.map(e=>`<div class="list-item"><span>${e.name}</span><button class="badge" style="background:#dc2626; color:white;" onclick="deleteEmployee(${e.id})">حذف</button></div>`).join(''); document.getElementById('allLettersList').innerHTML = letters.map(l=>`<div class="list-item"><span><b>${l.title}</b><br><small>${l.date}</small></span><div class="badge">👁️ ${l.views?.length || 0}</div></div>`).join('') || '<div>لا توجد خطابات</div>'; updateSelects(); }
-  function renderEmployeeLetters() { let myLetters = letters.filter(l => l.to === 'all' || l.to === currentUser.id); document.getElementById('myLetters').innerHTML = myLetters.map(l=>`<div class="list-item" onclick="viewLetter(${l.id})"><div><b>${l.title}</b><br><small>${l.date}</small></div><div class="badge">${l.views?.includes(currentUser.id) ? 'مقروء' : 'جديد'}</div></div>`).join('') || '<div>لا توجد خطابات</div>'; }
-  function viewLetter(id) { let l = letters.find(l=>l.id===id); if(l && !l.views?.includes(currentUser.id)) { if(!l.views) l.views = []; l.views.push(currentUser.id); save(); renderEmployeeLetters(); } alert(l.content); }
-  function sendLetter() { let title = document.getElementById('newLetterTitle').value; let content = document.getElementById('newLetterContent').value; let to = document.getElementById('letterRecipient').value; if(!title) return alert('أدخل العنوان'); letters.unshift({ id: Date.now(), title, content, to, views: [], date: new Date().toISOString().slice(0,10) }); save(); renderAdmin(); document.getElementById('newLetterTitle').value = ''; document.getElementById('newLetterContent').value = ''; alert('تم إرسال الخطاب'); }
-  function deleteEmployee(id) { if(confirm('حذف الموظف؟')) { employees = employees.filter(e=>e.id !== id); save(); renderAdmin(); } }
-  function openAddEmployee() { let name = prompt('اسم الموظف الجديد'); if(name) { employees.push({ id: Date.now(), name, password: "123", role: "employee" }); save(); renderAdmin(); } }
-  function adminTab(tab) { document.getElementById('adminDashboard').classList.add('hidden'); document.getElementById('adminEmployees').classList.add('hidden'); document.getElementById('adminLetters').classList.add('hidden'); document.getElementById('admin'+tab.charAt(0).toUpperCase()+tab.slice(1)).classList.remove('hidden'); }
-  load();
+  function updateSelects() { let sel = document.getElementById('letterTo'); if(sel) sel.innerHTML = '<option value="all">📢 لجميع الموظفين</option>'+employees.map(e=>`<option value="${e.id}">👤 ${e.name}</option>`).join(''); }
+  function updateReportSelect() { let sel = document.getElementById('reportLetterSelect'); if(sel) sel.innerHTML = '<option value="">-- اختر خطاباً --</option>'+letters.map(l=>`<option value="${l.id}">${l.title}</option>`).join(''); let sel2 = document.getElementById('exportLetterSelect'); if(sel2) sel2.innerHTML = '<option value="">-- اختر خطاباً للتصدير --</option>'+letters.map(l=>`<option value="${l.id}">${l.title}</option>`).join(''); }
+  function updateReport() { let id = document.getElementById('reportLetterSelect').value; if(!id) return; let letter = letters.find(l=>l.id==id); let viewed = letter.views||[]; let viewedEmps = employees.filter(e=>viewed.includes(e.id)); let notViewed = employees.filter(e=>!viewed.includes(e.id)); document.getElementById('reportContent').innerHTML = `<h4>📧 ${letter.title}</h4><p>📅 ${letter.date}</p><h5>✅ شاهدوا الخطاب (${viewedEmps.length})</h5>${viewedEmps.map(e=>`<div class="badge-green" style="margin:4px; padding:8px;">👤 ${e.name} - ${e.job||'موظف'}</div>`).join('')||'<div>لا أحد</div>'}<h5>❌ لم يشاهدوا (${notViewed.length})</h5>${notViewed.map(e=>`<div class="badge-red" style="margin:4px; padding:8px;">👤 ${e.name} - ${e.job||'موظف'}</div>`).join('')||'<div>الجميع شاهد</div>'}`; }
+  function exportLetterAs(type) { let id = document.getElementById('exportLetterSelect').value; if(!id) { alert('اختر خطاباً أولاً'); return; } let letter = letters.find(l=>l.id==id); let content = `${letter.title}\n\n${letter.content}\n\nالتاريخ: ${letter.date}\nعدد المشاهدات: ${letter.views?.length||0}`; let filename = `خطاب_${letter.title}_${Date.now()}`; if(type==='pdf') { let win = window.open(); win.document.write(`<html><body><h1>${letter.title}</h1><p>${letter.content}</p><p>التاريخ: ${letter.date}</p></body></html>`); win.print(); document.getElementById('exportStatus').innerHTML = '✅ تم فتح PDF للطباعة'; } else if(type==='image') { alert('سيتم حفظ الصورة بعد الطباعة'); let win = window.open(); win.document.write(`<html><body><div style="text-align:center;"><h1>${letter.title}</h1><p>${letter.content}</p></div></body></html>`); win.print(); document.getElementById('exportStatus').innerHTML = '✅ تم فتح المعاينة'; } else if(type==='excel') { let csv = `"العنوان","المحتوى","التاريخ"\n"${letter.title}","${letter.content}","${letter.date}"`; let blob = new Blob(["\uFEFF" + csv], {type: "application/vnd.ms-excel"}); let link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `${filename}.xls`; link.click(); document.getElementById('exportStatus').innerHTML = '✅ تم التحميل بصيغة Excel'; } else if(type==='word') { let html = `<html><body><h1>${letter.title}</h1><p>${letter.content}</p><p>${letter.date}</p></body></html>`; let blob = new Blob([html], {type: "application/msword"}); let link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `${filename}.doc`; link.click(); document.getElementById('exportStatus').innerHTML = '✅ تم التحميل بصيغة Word'; } else if(type==='text') { let blob = new Blob([content], {type: "text/plain"}); let link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `${filename}.txt`; link.click(); document.getElementById('exportStatus').innerHTML = '✅ تم التحميل كنص'; } setTimeout(()=>document.getElementById('exportStatus').innerHTML='',3000); }
+  function printReport() { let reportDiv = document.getElementById('reportContent'); if(!reportDiv.innerHTML) { alert('اختر خطاباً أولاً'); return; } let win = window.open(); win.document.write(`<html><body><h2>تقرير المشاهدة</h2>${reportDiv.innerHTML}</body></html>`); win.print(); }
+  function printAllLetters() { let html = `<html><body><h1>${document.getElementById('systemName').value}</h1><h2>قائمة جميع الخطابات</h2>`; letters.forEach(l=>{ html += `<div style="border:1px solid #ccc; margin:16px; padding:16px;"><h3>${l.title}</h3><p>${l.content}</p><p>التاريخ: ${l.date}</p><p>المشاهدات: ${l.views?.length||0}</p></div>`; }); html += `</body></html>`; let win = window.open(); win.document.write(html); win.print(); }
+  function showSignup() { document.getElementById('loginForm').classList.add('hidden'); document.getElementById('signupForm').classList.remove('hidden'); }
+  function showLogin() { document.getElementById('signupForm').classList.add('hidden'); document.getElementById('loginForm').classList.remove('hidden'); }
+  function handleLogin() { let email = document.getElementById('loginEmail').value, pwd = document.getElementById('loginPassword').value; if(email === "admin@example.com" && pwd === "admin") { currentUser = { role: "admin" }; showAdminPanel(); } else { let emp = employees.find(e => e.email === email && e.password === pwd); if(emp) alert("مرحباً " + emp.name); else alert("بيانات غير صحيحة"); } }
+  function handleSignup() { let name = document.getElementById('signupName').value, email = document.getElementById('signupEmail').value, pwd = document.getElementById('signupPassword').value; if(!name||!email||!pwd) { alert("املأ الحقول"); return; } employees.push({id:Date.now(),name,job:document.getElementById('signupJob').value,dept:document.getElementById('signupDept').value,phone:document.getElementById('signupPhone').value,specialty:document.getElementById('signupSpecialty').value,email,password:pwd}); saveData(); alert("تم إنشاء الحساب"); showLogin(); updateSelects(); }
+  function logout() { currentUser = null; document.getElementById('authScreen').classList.remove('hidden'); document.getElementById('adminPanel').classList.add('hidden'); document.getElementById('fabBtn').style.display = 'none'; }
+  function showAdminPanel() { document.getElementById('authScreen').classList.add('hidden'); document.getElementById('adminPanel').classList.remove('hidden'); document.getElementById('fabBtn').style.display = 'flex'; renderAdmin(); }
+  function renderAdmin() { document.getElementById('totalLetters').innerText = letters.length; document.getElementById('totalEmployees').innerText = employees.length; document.getElementById('totalViews').innerText = totalViews; let recent = [...letters].reverse().slice(0,3); document.getElementById('recentLetters').innerHTML = recent.map(l=>`<div class="letter-card" onclick="viewLetter(${l.id})"><div><div class="letter-title">${l.title}</div><div class="letter-meta">📅 ${l.date}</div></div><div class="badge">👁️ ${l.views?.length||0}</div></div>`).join('')||'<div>لا توجد خطابات</div>'; document.getElementById('employeesList').innerHTML = employees.map(e=>`<div class="letter-card"><div><div class="letter-title">${e.name}</div><div class="letter-meta">${e.job||'موظف'} | ${e.email}</div></div><div><button class="badge" style="background:#dc2626; color:white;" onclick="deleteEmployee(${e.id})">حذف</button></div></div>`).join(''); updateSelects(); updateReportSelect(); }
+  function viewLetter(id) { let letter = letters.find(l=>l.id===id); if(letter) alert(`📄 ${letter.title}\n\n${letter.content}\n\n📅 ${letter.date}\n👁️ ${letter.views?.length||0} مشاهدة`); }
+  function deleteEmployee(id) { if(confirm("حذف الموظف؟")) { employees = employees.filter(e=>e.id!==id); saveData(); renderAdmin(); } }
+  function addEmployee() { let name = prompt("الاسم"), email = prompt("البريد"); if(name&&email) { employees.push({id:Date.now(),name,email,password:"123"}); saveData(); renderAdmin(); } }
+  function openNewLetter() { document.getElementById('letterModal').style.display = 'flex'; }
+  function closeLetterModal() { document.getElementById('letterModal').style.display = 'none'; document.getElementById('letterTitle').value = ''; document.getElementById('letterContent').value = ''; }
+  function sendNewLetter() { let title = document.getElementById('letterTitle').value, content = document.getElementById('letterContent').value, to = document.getElementById('letterTo').value; if(!title) { alert("أدخل العنوان"); return; } letters.unshift({id:Date.now(),title,content,to,views:[],date:new Date().toISOString().slice(0,10)}); saveData(); renderAdmin(); closeLetterModal(); alert("تم الإرسال"); }
+  function saveSettings() { alert("تم حفظ الإعدادات"); saveData(); }
+  function resetData() { if(confirm("إعادة تعيين؟")) { localStorage.clear(); location.reload(); } }
+  function switchTab(tab) { ['dashboard','employees','reports','system'].forEach(t=>document.getElementById(t+'Tab').classList.add('hidden')); document.getElementById(tab+'Tab').classList.remove('hidden'); document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); event.target.classList.add('active'); if(tab==='reports') updateReportSelect(); }
+  loadData();
 </script>
 </body>
 </html>
